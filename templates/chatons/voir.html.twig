@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}vision chaton{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container">
+        <h1>Dossier <i>{{ nomDuDossier }}</i></h1>
+
+        <h4>Liste des images dans le dossier {{ nomDuDossier }}:</h4>
+        <ul>
+            {% for chaton in chatons %}
+                <li>{{ chaton.nom }}</li>
+            {% endfor %}
+        </ul>
+
+
+        <div id="gallery">
+            <div class="row">
+                {% for chaton in chatons %}
+                    {% include "home/_chaton.html.twig" %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        Fancybox.bind("#gallery img", {
+            groupAll: true, // Group all items
+            on: {
+                ready: (fancybox) => {
+                    console.log(`fancybox #${fancybox.id} is ready!`);
+                }
+            }
+        });
+    </script>
+
+
+
+
+{% endblock %}

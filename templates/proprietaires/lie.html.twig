@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajouter à un Proprio{% endblock %}
+
+{% block body %}
+    <h1>liés les chats et les propriétaires</h1>
+
+    <span style="font-size: 2rem">Les chats de <b>{{ proprio.prenom }} <i> {{ proprio.nom }} </i> : </b></span>
+    {% if (chats_proprio is empty) %}
+        <div style="background-color: #D3D3D3; padding: 1rem; margin: 2rem 12rem ; border-radius: 15px;display: flex;align-content: center;justify-content: space-between;align-items: center;">
+            <img src="https://cdn.pixabay.com/photo/2020/02/08/00/40/emoji-4828792_960_720.png" alt="" width="250px">
+            <span style="font-size: 2rem"><b>tro tristre pa 2 cha</b></span>
+            <img src="https://cdn.pixabay.com/photo/2020/02/08/00/40/emoji-4828792_960_720.png" alt="" width="250px">
+        </div>
+    {% else %}
+    {% endif %}
+    {% for chat in chats_proprio %}
+        <div style="background-color: #D3D3D3; padding: 1rem; margin: 2rem 12rem ; border-radius: 15px;display: flex;align-content: center;justify-content: space-between;align-items: center;">
+            <img src="{{ chat.Photo }}" alt="" width="250px">
+            <span style="font-size: 2rem">son nom : <b>{{ chat.nom }}</b></span>
+            <a href="{{ path('app_lié_supr',{id_prop: proprio.id, id_chat: chat.id}) }}" class="btn btn-primary">ce n'est pas mon chat!</a>
+        </div>
+    {% endfor %}
+
+    <span style="font-size: 2rem">Les autres chats : </span>
+    {% for chat in chats %}
+        {% if (not(chat in chats_proprio)) %}
+            <div style="background-color: #D3D3D3; padding: 1rem; margin: 2rem 12rem ; border-radius: 15px;display: flex;align-content: center;justify-content: space-between;align-items: center;">
+                <img src="{{ chat.Photo }}" alt="" width="250px">
+                <span style="font-size: 2rem">son nom : <b>{{ chat.nom }}</b></span>
+                <a href="{{  path('app_lié_add',{id_prop: proprio.id, id_chat: chat.id}) }}" class="btn btn-success">c'est mon chat!</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

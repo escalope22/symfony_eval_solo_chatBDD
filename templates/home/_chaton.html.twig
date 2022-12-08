@@ -1,0 +1,9 @@
+<div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ chaton.Photo }}" alt="image de {{ nomDuDossier }}">
+        <div class="card-body">
+            <p class="card-text">{{ chaton.nom }}</p>
+            <a href="{{ path('app_chatons_supr', {'id': chaton.id}) }}" class="btn btn-danger"><b>X</b></a>
+        </div>
+    </div>
+</div>

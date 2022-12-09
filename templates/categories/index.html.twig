@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoriesController!{% endblock %}
+
+{% block body %}
+<h1>Gestion des photos de chats</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for c in categories %}
+            <tr>
+                <td>{{ c.titre }}</td>
+                <td>{{ c.description }}</td>
+                <td><a href="{{ path('app_categories_modifier',{"id" : c.id})}}" class="btn btn-primary">Modifier</a></td>
+                <td><a href="{{ path('app_categories_supprimer',{"id" : c.id})}}" class="btn btn-danger">Supprimer</a></td>
+                <td><a href="{{ path('app_chatons_voir', {"id" : c.id}) }}" class="btn btn-primary">y allez</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <span> ↓ Pour ajouter une catégorie afin de classé cette phototèque ↓ </span> <br>
+    <a href="{{ path('app_categories_ajouter') }}" class="btn btn-primary">Ajouter une catégorie</a> <br>
+    <span> ↓ Pour ajouter une un chaton à la phototèque ↓ </span> <br>
+    <a href="{{ path('app_chatons') }}" class="btn btn-primary">Ajouter un chaton</a> <br>
+    <span> ↓ Pour ajouter un propriétaire de chatons ↓ </span> <br>
+    <a href="{{ path('app_proprietaires') }}" class="btn btn-primary">Ajouter un propriétaire</a> <br>
+{% endblock %}
